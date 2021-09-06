@@ -6,7 +6,7 @@ public class FileServer extends Thread {
     public SttUI ui;
     int j = 0;
     public FileServer() throws IOException {
-        int filesize =60223860; // filesize temporary hardcoded
+        int filesize =2147483643; // filesize temporary hardcoded
         String path;
         long start = System.currentTimeMillis();
         int bytesRead;
@@ -42,6 +42,7 @@ public class FileServer extends Thread {
             //lettura del nome del file
             DataInputStream clientData = new DataInputStream(is);
             String fileName = clientData.readUTF();
+            //System.out.println("InputSteam size: " + clientData.readLong());
             //
             String destination = path + "\\"+fileName;
             System.out.println(destination);
@@ -65,7 +66,7 @@ public class FileServer extends Thread {
                 if(bytesRead >= 0) current += bytesRead;
             } while(bytesRead > -1);
 
-            System.out.println("finished saving photo");
+            System.out.println("finished saving files");
             bos.write(mybytearray, 0 , current);
             bos.flush();
             bos.close();
