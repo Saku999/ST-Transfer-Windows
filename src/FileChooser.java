@@ -16,7 +16,7 @@ public class FileChooser extends JPanel implements ActionListener {
     public static String folder_Location;
 
     public FileChooser() {
-        this.setBackground(new Color(0xa4a4bf));
+        this.setBackground(new Color(0xe2f705));
         go = new JButton("choose the location");
         go.addActionListener(this);
         add(go);

@@ -36,7 +36,6 @@ public class FileServer extends Thread {
             System.out.println("Waiting...");
             Socket sock = servsock.accept();
             System.out.println("Accepted connection : " + sock);
-            ui.conectionOpen();
             // receive file
             byte [] mybytearray  = new byte [filesize];
             InputStream is = sock.getInputStream();
@@ -45,6 +44,7 @@ public class FileServer extends Thread {
             String fileName = clientData.readUTF();
             //
             String destination = path + "\\"+fileName;
+            System.out.println(destination);
             FileOutputStream fos = new FileOutputStream(destination); // destination path and name of file
             count++; //conta le foto salvate
             long size = clientData.readLong(); //dimensione del file
@@ -65,8 +65,7 @@ public class FileServer extends Thread {
                 if(bytesRead >= 0) current += bytesRead;
             } while(bytesRead > -1);
 
-            System.out.println("Fine prima foto");
-            ui.showImage(destination);
+            System.out.println("finished saving photo");
             bos.write(mybytearray, 0 , current);
             bos.flush();
             bos.close();
@@ -74,7 +73,7 @@ public class FileServer extends Thread {
             long end = System.currentTimeMillis();
             System.out.println(end-start);
             j++;
-            ui.numOfFile(j);
+            ui.showImage(destination, j);
         }
     }
 

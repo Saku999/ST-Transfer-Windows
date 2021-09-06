@@ -12,15 +12,22 @@ public class SttUI {
     JPanel panel5;
 
     JLabel waiting;
-    JLabel conn_open;
     FileChooser chooser1;
     String location;
     ImageIcon loading = new ImageIcon("ajax-loader.gif");
-    JProgressBar bar = new JProgressBar();;
+    JProgressBar bar = new JProgressBar();
     JLabel photo;
+    JLabel lab1= new JLabel();
+    JLabel lab2= new JLabel();
     ImageIcon imageIcon= new ImageIcon("logoApp.png");
 
-    public SttUI(){
+    public SttUI()  {
+        try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         frame = new JFrame("File reciver");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.white);
@@ -33,11 +40,11 @@ public class SttUI {
         panel4 = new JPanel();
         panel5 = new JPanel();
 
-        panel1.setBackground(new Color(0xa4a4bf));
-        panel2.setBackground(new Color(0x2a3457));
-        panel3.setBackground(new Color(0x2a3457));
-        panel4.setBackground(new Color(0x888c46));
-        panel5.setBackground(new Color(0xf2eaed));
+        panel1.setBackground(new Color(0xe2f705));
+        //panel2.setBackground(new Color(0x2a3457));
+        //panel3.setBackground(new Color(0x2a3457));
+        panel4.setBackground(new Color(0xe2f705));
+        panel5.setBackground(new Color(0xffffff));
 
         panel1.setPreferredSize(new Dimension(150,50));
         panel2.setPreferredSize(new Dimension(30,50));
@@ -64,13 +71,6 @@ public class SttUI {
         panel1.repaint();
     }
 
-    public void conectionOpen(){
-        panel1.removeAll();
-        conn_open =  new JLabel(("Connection open. \n Waiting for the image..."), loading, JLabel.CENTER);
-        panel1.add(conn_open);
-        panel1.revalidate();
-        panel1.repaint();
-    }
 
     public void browse()  {
         panel1.removeAll();
@@ -85,25 +85,32 @@ public class SttUI {
 
     }
 
-    public void showImage(String path){
-        ImageIcon image = new ImageIcon((path));
+    public void showImage(String path, int j){
+        //num = new JLabel("the number of file saved until now is: " + j);
+       // num.setVisible(true);
+        String path1 = path.replace("\\", "/");
+        ImageIcon image = new ImageIcon((path1));
         Image im = image.getImage();
-        image= new ImageIcon(im.getScaledInstance(20,20, Image.SCALE_SMOOTH));
-        photo = new JLabel(image);
+        image= new ImageIcon(im.getScaledInstance(40,40,Image.SCALE_SMOOTH));
+        photo = new JLabel("the number of file saved until now is: " + j, image, JLabel.CENTER);
+        photo.setHorizontalTextPosition(JLabel.LEFT);
+        photo.setVisible(true);
+        //panel5.add(num);
         panel5.add(photo);
-        System.out.println("dovrei mostrare l'immagine ");
         panel5.revalidate();
         panel5.repaint();
     }
     public void ip1(String wifi){
         panel1.remove(chooser1);
-        JLabel lab1 = new JLabel("Se sei connesso al wifi usa questo IP: "+ wifi, SwingConstants.CENTER);
+        //lab1 = new JLabel("Se sei connesso al wifi usa questo IP: "+ wifi, SwingConstants.CENTER);
+        lab1.setText("Se sei connesso al wifi usa questo IP: "+ wifi);
         panel5.add(lab1);
         panel5.revalidate();
         panel5.repaint();
     }
     public void ip2(String ethernet){
-        JLabel lab2 = new JLabel("Se sei connesso con cavo ethernet usa questo IP: "+ ethernet, SwingConstants.CENTER);
+        //lab2 = new JLabel("Se sei connesso con cavo ethernet usa questo IP: "+ ethernet, SwingConstants.CENTER);
+        lab2.setText("Se sei connesso con cavo ethernet usa questo IP: "+ ethernet);
         panel5.add(lab2);
         panel5.revalidate();
         panel5.repaint();
@@ -113,20 +120,14 @@ public class SttUI {
         panel1.removeAll();
         panel1.add(new JLabel("Saving files...",SwingConstants.CENTER));
         panel4.removeAll();
+        panel5.remove(lab1);
+        panel5.remove(lab2);
         bar.setValue(0);
         bar.setBounds(0,0,800,50);
         bar.setStringPainted(true);
-        bar.setForeground(new Color(0x888c46));
+        bar.setForeground(new Color(0xaf307));
         bar.setBackground(Color.black);
         panel4.add(bar,SwingConstants.CENTER);
-    }
-    public void numOfFile(int j){
-        panel5.removeAll();
-        JLabel num = new JLabel("the number of file saved until now is: " + j, JLabel.CENTER);
-        num.setVisible(true);
-        panel5.add(num);
-        panel5.revalidate();
-        panel5.repaint();
     }
 }
 
