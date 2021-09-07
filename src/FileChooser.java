@@ -1,3 +1,5 @@
+import com.jtattoo.plaf.JTattooUtilities;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,7 @@ public class FileChooser extends JPanel implements ActionListener {
     public static String folder_Location;
 
     public FileChooser() {
-        this.setBackground(new Color(0xe2f705));
+        this.setBackground(new Color(0x00FDEA));
         go = new JButton("choose the location");
         go.addActionListener(this);
         add(go);

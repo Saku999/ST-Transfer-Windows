@@ -23,12 +23,12 @@ public class SttUI {
 
     public SttUI()  {
         try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        frame = new JFrame("File reciver");
+        frame = new JFrame("ST-Transfer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.white);
         frame.setIconImage(imageIcon.getImage());
@@ -39,11 +39,11 @@ public class SttUI {
         panel3 = new JPanel();
         panel4 = new JPanel();
         panel5 = new JPanel();
-
-        panel1.setBackground(new Color(0xe2f705));
+//0x6788
+        panel1.setBackground(new Color(0x00FDEA));
         //panel2.setBackground(new Color(0x2a3457));
         //panel3.setBackground(new Color(0x2a3457));
-        panel4.setBackground(new Color(0xe2f705));
+        panel4.setBackground(new Color(0x00FDEA));
         panel5.setBackground(new Color(0xffffff));
 
         panel1.setPreferredSize(new Dimension(150,50));
@@ -102,14 +102,14 @@ public class SttUI {
     }
     public void ip1(String wifi){
         panel1.remove(chooser1);
-        //lab1 = new JLabel("Se sei connesso al wifi usa questo IP: "+ wifi, SwingConstants.CENTER);
+        panel1.repaint();
+        panel1.revalidate();
         lab1.setText("Se sei connesso al wifi usa questo IP: "+ wifi);
         panel5.add(lab1);
         panel5.revalidate();
         panel5.repaint();
     }
     public void ip2(String ethernet){
-        //lab2 = new JLabel("Se sei connesso con cavo ethernet usa questo IP: "+ ethernet, SwingConstants.CENTER);
         lab2.setText("Se sei connesso con cavo ethernet usa questo IP: "+ ethernet);
         panel5.add(lab2);
         panel5.revalidate();

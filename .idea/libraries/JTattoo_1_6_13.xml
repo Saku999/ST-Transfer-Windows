@@ -4,6 +4,8 @@
       <root url="jar://$USER_HOME$/Downloads/JTattoo-1.6.13.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/JTattoo-1.6.13-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
